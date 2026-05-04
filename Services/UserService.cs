@@ -7,6 +7,8 @@ namespace NotificationApp.Services;
 internal class UserService : IUserService
 {
     List<User> users = new List<User>();
+    EmailService emailService;
+    SMSService smsService;
 
     public User AddUser()
     {
@@ -43,6 +45,10 @@ internal class UserService : IUserService
 
         users.Add(user);
         Console.WriteLine("User Added Successfully");
+
+        string message = $"Successfully created an account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
+        emailService.Send(message,user);
+        smsService.Send(message,user);
 
         return user;
     }
@@ -86,6 +92,9 @@ internal class UserService : IUserService
             if(item.Email == email)
             {
                 users.Remove(item);
+                string message = $"Successfully deleted your account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
+                emailService.Send(message,user);
+                smsService.Send(message,user);
                 return item;
             }
         }
@@ -99,6 +108,9 @@ internal class UserService : IUserService
             if(item.PhoneNumber == phonenumber)
             {
                 users.Remove(item);
+                string message = $"Successfully deleted your account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
+                emailService.Send(message,user);
+                smsService.Send(message,user);
                 return item;
             }
         }

@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Mail;
 using NotificationApp.Interfaces;
 using NotificationApp.Models;
+using NotificationApp.Validation;
 
 namespace NotificationApp.Services;
 
@@ -43,4 +44,10 @@ internal class EmailService : INotification
     {
         Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nMessage : {message}");
     }
+
+    private bool checkValidation(User user)
+    {
+        return EmailValidation.isValidEmail(user.Email);
+    }
+
 }

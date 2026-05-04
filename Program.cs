@@ -36,8 +36,7 @@ internal class Program
             {
                 case 1:
                     {
-                        User user = userService.AddUser();
-                        Console.WriteLine(user);
+                        User user = userService.AddUser();5
                         break;
                     }
                 case 2:
@@ -91,6 +90,11 @@ internal class Program
                             email = Console.ReadLine() ?? "";
                         }
                         User user = userService.DeleteUserByEmail(email);
+                        if(user == null)
+                        {
+                            Console.WriteLine($"No User Found With Email Address {email}");
+                            break;
+                        }
                         Console.WriteLine(user);
                         break;
                     }
@@ -104,6 +108,11 @@ internal class Program
                             phone = Console.ReadLine() ?? "";
                         }
                         User user = userService.DeleteUserByPhoneNumber(phone);
+                        if(user == null)
+                        {
+                            Console.WriteLine($"No User Found With Phone Number {phone}");
+                            break;
+                        }
                         Console.WriteLine(user);
                         break;
                     }
@@ -116,13 +125,18 @@ internal class Program
                             Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
                             email = Console.ReadLine() ?? "";
                         }
+                        User user = userService.GetUserByEmail(email);
+                        if(user == null)
+                        {
+                            Console.WriteLine($"No User Found With Email Address {email}");
+                            break;
+                        }
                         Console.WriteLine($"Enter The Message That needed to be sent to {email}");
                         string message = Console.ReadLine() ?? "";
                         while(message.Trim() == "")
                         {
                             message = Console.ReadLine() ?? "";
                         }
-                        User user = userService.GetUserByEmail(email);
                         EmailService emailService = new EmailService();
                         emailService.Send(message,user);
                         break;
@@ -136,13 +150,18 @@ internal class Program
                             Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
                             phone = Console.ReadLine() ?? "";
                         }
+                        User user = userService.GetUserByPhoneNumber(phone);     
+                        if(user == null)
+                        {
+                            Console.WriteLine($"No User Found With Phone Number {phone}");
+                            break;
+                        }
                         Console.WriteLine($"Enter The Message That needed to be sent to {phone}");
                         string message = Console.ReadLine() ?? "";
                         while(message.Trim() == "")
                         {
                             message = Console.ReadLine() ?? "";
                         }
-                        User user = userService.GetUserByPhoneNumber(phone);     
                         SMSService smsService = new SMSService ();
                         smsService.Send(message,user);
                         break;               

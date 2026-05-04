@@ -14,7 +14,14 @@ internal class Program
         Console.WriteLine(result);
         result = PhoneNumberValidation.isValidPhoneNumber("9442378188");
         Console.WriteLine(result);
-        EmailService email= new EmailService();
-        email.Send("hii",user);
+        //EmailService email= new EmailService();
+        //email.Send("hii",user);
+        //SMSService sms = new SMSService();
+        //sms.Send("hii",user);
+        UserService userService = new UserService();
+        Console.WriteLine(userService.AddUser());
+        Console.WriteLine(userService.GetUserByEmail("sivakavindra@gmail.com"));
+        Console.WriteLine(userService.GetUserByPhoneNumber("9442378188"));
+
     }
 }

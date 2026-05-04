@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.2.0" />
+    <PackageReference Include="Twilio" Version="7.14.7" />
   </ItemGroup>
 
 </Project>

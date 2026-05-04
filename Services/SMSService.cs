@@ -19,4 +19,10 @@ internal class SMSService : INotification
     {
         return PhoneNumberValidation.isValidPhoneNumber(user.PhoneNumber);
     }
+
+    private void Log(string message,User user)
+    {
+        Console.WriteLine("Logging the Information - SMS Service");
+        Console.WriteLine($"The SMS Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nMessage : {message}");
+    }
 }

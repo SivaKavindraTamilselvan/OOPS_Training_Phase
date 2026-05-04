@@ -45,7 +45,7 @@ internal class EmailService : INotification
         Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nMessage : {message}");
     }
 
-    private bool checkValidation(User user)
+    private bool CheckValidation(User user)
     {
         return EmailValidation.isValidEmail(user.Email);
     }

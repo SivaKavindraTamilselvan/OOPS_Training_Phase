@@ -4,5 +4,5 @@ namespace NotificationApp.Interfaces;
 internal interface INotification
 {
     void Send(string message,User user);
-    private bool checkValidation(User user);
+    private bool CheckValidation(User user);
 }

@@ -15,7 +15,7 @@ internal class SMSService : INotification
        Console.WriteLine($"Message - {message}");
        status = "sent";
     }
-    private bool checkValidation(User user)
+    private bool CheckValidation(User user)
     {
         return PhoneNumberValidation.isValidPhoneNumber(user.PhoneNumber);
     }

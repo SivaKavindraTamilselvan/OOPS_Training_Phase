@@ -7,4 +7,7 @@ internal interface IUserService
     internal User? GetUserByEmail(string email);
     internal User? GetUserByPhoneNumber(string phonenumber);
     internal void PrintAllUsers();
+    internal User? DeleteUserByPhoneNumber(string phonenumber);
+    internal User? DeleteUserByEmail(string email);
+
 }

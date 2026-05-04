@@ -10,6 +10,9 @@ internal class Program
     static void Main(string[] args)
     {
         Env.Load();
+        Company company = new Company();
+        Console.WriteLine(company);
+        
         UserService userService = new UserService();
         while(true)
         {

@@ -19,7 +19,7 @@ internal class EmailService : INotification
                 Console.WriteLine("Invalid User Details");
                 return;
             }
-            var from = new MailAddress(Environment.GetEnvironmentVariable("FromEmail"),"BusBookingApp");
+            var from = new MailAddress(Environment.GetEnvironmentVariable("CompanyEmail"),"BusBookingApp");
             var to = new MailAddress(user.Email, user.Name);
 
             string? password = Environment.GetEnvironmentVariable("Password");

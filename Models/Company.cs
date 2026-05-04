@@ -2,9 +2,9 @@ namespace NotificationApp.Models;
 
 internal class Company
 {
-    public string Name {get;set;}
-    public string Email {get;set;}
-    public string PhoneNumber{get;set;}
+    public string? Name {get;set;}
+    public string? Email {get;set;}
+    public string? PhoneNumber{get;set;}
     public string[] Services  = new string[2];
 
     public Company()

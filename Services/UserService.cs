@@ -1,9 +1,10 @@
 using NotificationApp.Models;
 using NotificationApp.Validation;
+using NotificationApp.Interfaces;
 
 namespace NotificationApp.Services;
 
-internal class UserService
+internal class UserService : IUserService
 {
     List<User> users = new List<User>();
 
@@ -16,8 +17,7 @@ internal class UserService
         while(name.Trim() == "")
         {
             Console.WriteLine("Inavlid Name.Name Should Not be Empty.Enter Valid Name");
-            string name = Console.ReadLine() ?? "";
-
+            name = Console.ReadLine() ?? "";
         }
 
         Console.WriteLine("Enter Your Email");

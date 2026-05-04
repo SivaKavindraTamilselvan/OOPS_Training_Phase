@@ -98,18 +98,20 @@ internal class Program
                             Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
                             email = Console.ReadLine() ?? "";
                         }
+                        User user = userService.DeleteUserByEmail(email);
+                        Console.WriteLine(user);
                         break;
                     }
                 case 6:
                     {
-                        Console.WriteLine("Enter the PhoneNumber To Get The User");
+                        Console.WriteLine("Enter the PhoneNumber To Delete The User");
                         string phone = Console.ReadLine() ?? "";
                         while (!PhoneNumberValidation.isValidPhoneNumber(phone))
                         {
                             Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
                             phone = Console.ReadLine() ?? "";
                         }
-                        User user = userService.GetUserByPhoneNumber(phone);
+                        User user = userService.DeleteUserByPhoneNumber(phone);
                         Console.WriteLine(user);
                         break;
                     }

@@ -32,7 +32,7 @@ internal class SMSService : INotification
             Console.WriteLine("User Not Found");
             return false;
         }
-        return PhoneNumberValidation.isValidPhoneNumber(user.PhoneNumber);
+        return PhoneNumberValidation.isValidPhoneNumber(user.PhoneNumber??"");
     }
 
     private void Log(string message,User user)

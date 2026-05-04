@@ -15,5 +15,6 @@ internal class EmailValidation
         string pattern=@"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 
         return Regex.IsMatch(checkEmail, pattern, RegexOptions.IgnoreCase);
+        
     }
 }

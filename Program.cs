@@ -36,7 +36,7 @@ internal class Program
             {
                 case 1:
                     {
-                        User user = userService.AddUser();5
+                        User user = userService.AddUser();
                         break;
                     }
                 case 2:

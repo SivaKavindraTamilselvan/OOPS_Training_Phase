@@ -7,8 +7,8 @@ namespace NotificationApp.Services;
 internal class UserService : IUserService
 {
     List<User> users = new List<User>();
-    EmailService emailService;
-    SMSService smsService;
+    EmailService emailService = new EmailService();
+    SMSService smsService = new SMSService();
 
     public User AddUser()
     {
@@ -115,5 +115,17 @@ internal class UserService : IUserService
             }
         }
         return null;
+    }
+
+    public bool CheckUser(User user)
+    {
+        foreach(var item in users)
+        {
+            if(item == user)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

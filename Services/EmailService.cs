@@ -14,6 +14,11 @@ internal class EmailService : INotification
     {
         try
         {
+            if(!CheckValidation(user))
+            {
+                Console.WriteLine("Invalid User Details");
+                return;
+            }
             var from = new MailAddress(Environment.GetEnvironmentVariable("FromEmail"),"BusBookingApp");
             var to = new MailAddress(user.Email, user.Name);
 
@@ -35,6 +40,12 @@ internal class EmailService : INotification
             dateTime = DateTime.Now;
 
             status = "Sent";
+
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("Email Service");
+            Console.WriteLine("Email Sent Successfully");
+            Console.WriteLine("---------------------------------------------");
+
         }
         catch (Exception ex)
         {
@@ -44,12 +55,20 @@ internal class EmailService : INotification
     }
     private void Log(string message,User user)
     {
+        Console.WriteLine("---------------------------------------------");
         Console.WriteLine("Logging the Information - Email Service");
-        Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nMessage : {message}\nDate & Time : {dateTime}");
+        Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nDate & Time : {dateTime}\nMessage : {message}");
+        Console.WriteLine("---------------------------------------------");
     }
 
     private bool CheckValidation(User user)
     {
+        UserService userService = new UserService();
+        if(!userService.CheckUser(user))
+        {
+            Console.WriteLine("User Not Found");
+            return false;
+        }
         return EmailValidation.isValidEmail(user.Email);
     }
 

@@ -78,4 +78,30 @@ internal class UserService : IUserService
             Console.WriteLine(item);
         }
     }
+
+    public User? DeleteUserByEmail(string email)
+    {
+        foreach(var item in users)
+        {
+            if(item.Email == email)
+            {
+                users.Remove(item);
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public User? DeleteUserByPhoneNumber(string phonenumber)
+    {
+        foreach(var item in users)
+        {
+            if(item.PhoneNumber == phonenumber)
+            {
+                users.Remove(item);
+                return item;
+            }
+        }
+        return null;
+    }
 }

@@ -19,10 +19,17 @@ internal class EmailService : INotification
                 Console.WriteLine("Invalid User Details");
                 return;
             }
-            var from = new MailAddress(Environment.GetEnvironmentVariable("CompanyEmail"),"BusBookingApp");
-            var to = new MailAddress(user.Email, user.Name);
+        
+            string fromEmail = Environment.GetEnvironmentVariable("CompanyEmail") ?? "";
+            string? fromName = Environment.GetEnvironmentVariable("CompanyName") ?? "";
 
-            string? password = Environment.GetEnvironmentVariable("Password");
+            string? toEmail = user.Email ?? "";
+            string? toName = user.Name ?? "";
+
+            var from = new MailAddress(fromEmail, fromName);
+            var to = new MailAddress(toEmail, toName);
+
+            string? password = Environment.GetEnvironmentVariable("Password") ?? "";
 
             var smtp = new SmtpClient("smtp.gmail.com",587)
             {
@@ -69,7 +76,7 @@ internal class EmailService : INotification
             Console.WriteLine("User Not Found");
             return false;
         }
-        return EmailValidation.isValidEmail(user.Email);
+        return EmailValidation.isValidEmail(user.Email??"");
     }
 
 }

@@ -9,6 +9,7 @@ namespace NotificationApp.Services;
 internal class EmailService : INotification
 {
     private string status = "pending";
+    private DateTime? dateTime= null;
     public void Send(string message,User user)
     {
         try
@@ -31,6 +32,7 @@ internal class EmailService : INotification
                 IsBodyHtml = true
             };
             smtp.Send(mail);
+            dateTime = DateTime.Now;
 
             status = "Sent";
         }
@@ -43,7 +45,7 @@ internal class EmailService : INotification
     private void Log(string message,User user)
     {
         Console.WriteLine("Logging the Information - Email Service");
-        Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nMessage : {message}");
+        Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nMessage : {message}\nDate & Time : {dateTime}");
     }
 
     private bool CheckValidation(User user)

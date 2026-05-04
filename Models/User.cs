@@ -8,7 +8,7 @@ internal class User
 
     public User()
     {
-        Console.WriteLine("User Controller without parameter");
+        
     }
     public User(string name,string email,string phonenumber)
     {

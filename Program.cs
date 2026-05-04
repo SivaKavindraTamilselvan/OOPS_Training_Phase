@@ -123,7 +123,7 @@ internal class Program
                             message = Console.ReadLine() ?? "";
                         }
                         User user = userService.GetUserByEmail(email);
-                        EmailService emailService;
+                        EmailService emailService = new EmailService();
                         emailService.Send(message,user);
                         break;
                     }
@@ -143,7 +143,7 @@ internal class Program
                             message = Console.ReadLine() ?? "";
                         }
                         User user = userService.GetUserByPhoneNumber(phone);     
-                        SMSService smsService;
+                        SMSService smsService = new SMSService ();
                         smsService.Send(message,user);
                         break;               
                     }

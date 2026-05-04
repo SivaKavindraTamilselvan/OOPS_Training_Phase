@@ -92,9 +92,9 @@ internal class UserService : IUserService
             if(item.Email == email)
             {
                 users.Remove(item);
-                string message = $"Successfully deleted your account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
-                emailService.Send(message,user);
-                smsService.Send(message,user);
+                string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
+                emailService.Send(message,item);
+                smsService.Send(message,item);
                 return item;
             }
         }
@@ -108,9 +108,9 @@ internal class UserService : IUserService
             if(item.PhoneNumber == phonenumber)
             {
                 users.Remove(item);
-                string message = $"Successfully deleted your account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
-                emailService.Send(message,user);
-                smsService.Send(message,user);
+                string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
+                emailService.Send(message,item);
+                smsService.Send(message,item);
                 return item;
             }
         }

@@ -7,5 +7,7 @@ internal class Program
         User user = new User("Siva Kavindra","sivakavindra@gmail.com","9442378188");
         bool result = EmailValidation.isValidEmail("sivakavindra");
         Console.WriteLine(result);
+        result = PhoneNumberValidation.isValidPhoneNumber("9442378188");
+        Console.WriteLine(result);
     }
 }

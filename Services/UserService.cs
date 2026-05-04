@@ -6,7 +6,7 @@ namespace NotificationApp.Services;
 
 internal class UserService : IUserService
 {
-    List<User> users = new List<User>();
+    static List<User> users = new List<User>();
     EmailService emailService = new EmailService();
     SMSService smsService = new SMSService();
 

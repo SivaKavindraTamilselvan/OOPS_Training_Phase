@@ -8,7 +8,9 @@ internal class User
 
     public User()
     {
-        
+        Name = "";
+        Email = "";
+        PhoneNumber = "";
     }
     public User(string name,string email,string phonenumber)
     {

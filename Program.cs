@@ -30,12 +30,14 @@ internal class Program
             Console.WriteLine("Enter 4 To Display All The Users");
             Console.WriteLine("Enter 5 To Delete The User By Email");
             Console.WriteLine("Enter 6 To Delete The User By PhoneNumber");
+            Console.WriteLine("Enter 7 To Deliver The Message To A User By Email");
+            Console.WriteLine("Enter 8 To Deliver The Message To A User By Phone Number");
             Console.WriteLine("Enter 0 To Quit The Loop");
             Console.WriteLine("------------------------------------------------");
 
 
             int typechoice;
-            while(!int.TryParse(Console.ReadLine(),out typechoice) || typechoice>6 || typechoice<0)
+            while(!int.TryParse(Console.ReadLine(),out typechoice) || typechoice>8 || typechoice<0)
             {
                 Console.WriteLine("Enter Vaild Input");
                 continue;
@@ -114,6 +116,46 @@ internal class Program
                         User user = userService.DeleteUserByPhoneNumber(phone);
                         Console.WriteLine(user);
                         break;
+                    }
+                case 7:
+                    {
+                        Console.WriteLine("Enter Email To Send Message To The User");
+                        string email = Console.ReadLine() ?? "";
+                        while(!EmailValidation.isValidEmail(email))
+                        {
+                            Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
+                            email = Console.ReadLine() ?? "";
+                        }
+                        Console.WriteLine($"Enter The Message That needed to be sent to {email}");
+                        string message = Console.ReadLine() ?? "";
+                        while(message.Trim() == "")
+                        {
+                            message = Console.ReadLine() ?? "";
+                        }
+                        User user = userService.GetUserByEmail(email);
+                        EmailService emailService;
+                        emailService.Send(message,user);
+                        break;
+                    }
+                case 8:
+                    {
+                        Console.WriteLine("Enter PhoneNumber To Send Message To The User");
+                        string phone = Console.ReadLine() ?? "";
+                        while (!PhoneNumberValidation.isValidPhoneNumber(phone))
+                        {
+                            Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
+                            phone = Console.ReadLine() ?? "";
+                        }
+                        Console.WriteLine($"Enter The Message That needed to be sent to {phone}");
+                        string message = Console.ReadLine() ?? "";
+                        while(message.Trim() == "")
+                        {
+                            message = Console.ReadLine() ?? "";
+                        }
+                        User user = userService.GetUserByPhoneNumber(phone);     
+                        SMSService smsService;
+                        smsService.Send(message,user);
+                        break;               
                     }
                 case 0:
                     {

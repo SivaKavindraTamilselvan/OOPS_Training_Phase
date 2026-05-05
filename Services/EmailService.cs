@@ -68,6 +68,7 @@ internal class EmailService : INotification
         Console.WriteLine("---------------------------------------------");
     }
 
+    //check if user is registered
     private bool CheckValidation(User user)
     {
         UserService userService = new UserService();

@@ -8,6 +8,8 @@ internal class SMSService : INotification
 {
     private string status = "pending";
     private DateTime? dateTime= null;
+
+    //send only the console based message to the users
     public void Send(string message,User user)
     {
         if(!CheckValidation(user))
@@ -24,6 +26,8 @@ internal class SMSService : INotification
        status = "sent";
        Log(message,user);
     }
+
+    //check if user is registered
     private bool CheckValidation(User user)
     {
         UserService userService = new UserService();
@@ -35,6 +39,7 @@ internal class SMSService : INotification
         return PhoneNumberValidation.isValidPhoneNumber(user.PhoneNumber??"");
     }
 
+    //log messages
     private void Log(string message,User user)
     {
         Console.WriteLine("---------------------------------------------");

@@ -7,6 +7,7 @@ internal class Company
     public string? PhoneNumber{get;set;}
     public string[] Services  = new string[2];
 
+    //non paremeterised constructor
     public Company()
     {
         Name = "BusBookingApp";
@@ -15,6 +16,7 @@ internal class Company
         Services[0] = "Email";
         Services[1] = "SMS";
     }
+    //overriding
     public override string ToString()
     {
         return $"CompanyDetails\nComapany Name : {Name}\nEmail : {Email}\nPhoneNumber : {PhoneNumber}\nServices : {Services[0]} , {Services[1]}";

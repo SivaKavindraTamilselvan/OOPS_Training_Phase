@@ -6,6 +6,7 @@ namespace NotificationApp.Services;
 
 internal class UserService : IUserService
 {
+    static int id=0;
     static List<User> users = new List<User>();
     EmailService emailService = new EmailService();
     SMSService smsService = new SMSService();
@@ -41,6 +42,7 @@ internal class UserService : IUserService
             Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
             phone = Console.ReadLine() ?? "";
         }
+        user.id = ++id;
         user.Name = name;
         user.Email = email;
         user.PhoneNumber = phone;
@@ -48,9 +50,10 @@ internal class UserService : IUserService
         //user added in the static variable
         users.Add(user);
         Console.WriteLine("User Added Successfully");
+        Console.WriteLine("Wait for Mail");
 
         //email sent to the user added
-        string message = $"Successfully created an account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
+        string message = $"Successfully created an account with the details\nUser Id : {user.id}\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
         emailService.Send(message,user);
         smsService.Send(message,user);
 
@@ -69,6 +72,19 @@ internal class UserService : IUserService
         }
         return null;
     }
+
+    public User? GetUserById(int id)
+    {
+        foreach(var item in users)
+        {
+            if(item.id == id)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
 
     //get the user by phone number if not found null will be returned
     public User? GetUserByPhoneNumber(string phonenumber)
@@ -99,10 +115,11 @@ internal class UserService : IUserService
         {
             if(item.Email == email)
             {
-                users.Remove(item);
-                string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
+                Console.WriteLine("Wait for Mail");
+                string message = $"Successfully deleted your account with the details\nUserId : {item.id}\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
                 emailService.Send(message,item);
                 smsService.Send(message,item);
+                users.Remove(item);
                 return item;
             }
         }
@@ -116,10 +133,28 @@ internal class UserService : IUserService
         {
             if(item.PhoneNumber == phonenumber)
             {
-                users.Remove(item);
+                Console.WriteLine("Wait for Mail");
                 string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
                 emailService.Send(message,item);
                 smsService.Send(message,item);
+                users.Remove(item);
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public User? DeleteUserById(int id)
+    {
+        foreach(var item in users)
+        {
+            if(item.id == id)
+            {
+                Console.WriteLine("Wait for Mail");
+                string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
+                emailService.Send(message,item);
+                smsService.Send(message,item);
+                users.Remove(item);
                 return item;
             }
         }

@@ -27,12 +27,14 @@ internal class Program
             Console.WriteLine("Enter 6 To Delete The User By PhoneNumber");
             Console.WriteLine("Enter 7 To Deliver The Message To A User By Email");
             Console.WriteLine("Enter 8 To Deliver The Message To A User By Phone Number");
+            Console.WriteLine("Enter 9 To Get The User By Id");
+            Console.WriteLine("Enter 10 To Delete The User By Id");
             Console.WriteLine("Enter 0 To Quit The Loop");
             Console.WriteLine("------------------------------------------------");
 
             int typechoice;
 
-            while (!int.TryParse(Console.ReadLine(), out typechoice) || typechoice > 8 || typechoice < 0)
+            while (!int.TryParse(Console.ReadLine(), out typechoice) || typechoice > 10 || typechoice < 0)
             {
                 Console.WriteLine("Enter Vaild Input");
             }
@@ -202,7 +204,34 @@ internal class Program
                         smsService.Send(message, user);
                         break;
                     }
-
+                case 9:
+                    {
+                        Console.WriteLine("Enter the userID To Get The User");
+                        int id = Convert.ToInt32(Console.ReadLine());
+                        var user = userService.GetUserById(id);
+                        //check condition if no user found
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found");
+                            break;
+                        }
+                        Console.WriteLine(user);
+                        break;
+                    }
+                case 10:
+                    {
+                        Console.WriteLine("Enter the userID To Delete The User");
+                        int id = Convert.ToInt32(Console.ReadLine());
+                        var user = userService.DeleteUserById(id);
+                        //check null condition
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found");
+                            break;
+                        }
+                        Console.WriteLine(user);
+                        break;
+                    }
                 case 0:
                     {
                         return;

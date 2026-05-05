@@ -2,6 +2,7 @@ namespace NotificationApp.Models;
 
 internal class User
 {
+    public int id {get;set;}
     public string? Name {get;set;}
     public string? Email {get;set;}
     public string? PhoneNumber{get;set;}
@@ -23,6 +24,6 @@ internal class User
     //overriding
     public override string ToString()
     {
-        return $"Name : {Name}\nEmail : {Email}\nPhoneNumber : {PhoneNumber}";
+        return $"UserId : {id}\nName : {Name}\nEmail : {Email}\nPhoneNumber : {PhoneNumber}";
     }
 }

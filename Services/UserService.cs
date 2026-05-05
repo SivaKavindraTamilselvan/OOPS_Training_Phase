@@ -73,6 +73,7 @@ internal class UserService : IUserService
         return null;
     }
 
+    //get the user by id
     public User? GetUserById(int id)
     {
         foreach(var item in users)

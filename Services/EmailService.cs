@@ -60,6 +60,7 @@ internal class EmailService : INotification
         }
         Log(message,user);
     }
+    //log messages in console
     private void Log(string message,User user)
     {
         Console.WriteLine("---------------------------------------------");

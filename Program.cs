@@ -40,177 +40,173 @@ internal class Program
             switch (typechoice)
             {
                 case 1:
-                {
-                    User user = userService.AddUser();
-                    break;
-                }
+                    {
+                        //used to add the user
+                        var user = userService.AddUser();
+                        break;
+                    }
 
                 case 2:
-                {
-                    Console.WriteLine("Enter the Email To Get The User");
-                    string email = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (!EmailValidation.isValidEmail(email))
                     {
-                        Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
-                        email = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    User user = userService.GetUserByEmail(email);
-
-                    if (user == null)
-                    {
-                        Console.WriteLine($"No User Found With Email Address {email}");
+                        //get the user by email id entered
+                        Console.WriteLine("Enter the Email To Get The User");
+                        string email = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until valid email is entered
+                        while (!EmailValidation.isValidEmail(email))
+                        {
+                            Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
+                            email = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        var user = userService.GetUserByEmail(email);
+                        //check null condition
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found With Email Address {email}");
+                            break;
+                        }
+                        Console.WriteLine(user);
                         break;
                     }
-
-                    Console.WriteLine(user);
-                    break;
-                }
 
                 case 3:
-                {
-                    Console.WriteLine("Enter the PhoneNumber To Get The User");
-                    string phone = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (!PhoneNumberValidation.isValidPhoneNumber(phone))
                     {
-                        Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
-                        phone = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    User user = userService.GetUserByPhoneNumber(phone);
-
-                    if (user == null)
-                    {
-                        Console.WriteLine($"No User Found With Phone Number {phone}");
+                        //get the user details by entering the phone number
+                        Console.WriteLine("Enter the PhoneNumber To Get The User");
+                        string phone = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until valid phone number format is entered
+                        while (!PhoneNumberValidation.isValidPhoneNumber(phone))
+                        {
+                            Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
+                            phone = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        var user = userService.GetUserByPhoneNumber(phone);
+                        //check condition if no user found
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found With Phone Number {phone}");
+                            break;
+                        }
+                        Console.WriteLine(user);
                         break;
                     }
-
-                    Console.WriteLine(user);
-                    break;
-                }
 
                 case 4:
-                {
-                    userService.PrintAllUsers();
-                    break;
-                }
+                    {
+                        //print all the users alone
+                        userService.PrintAllUsers();
+                        break;
+                    }
 
                 case 5:
-                {
-                    Console.WriteLine("Enter the Email To Delete The User");
-                    string email = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (!EmailValidation.isValidEmail(email))
                     {
-                        Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
-                        email = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    User user = userService.DeleteUserByEmail(email);
-
-                    if (user == null)
-                    {
-                        Console.WriteLine($"No User Found With Email Address {email}");
+                        //delete the user by entering the email
+                        Console.WriteLine("Enter the Email To Delete The User");
+                        string email = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until valid email entered.
+                        while (!EmailValidation.isValidEmail(email))
+                        {
+                            Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
+                            email = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        var user = userService.DeleteUserByEmail(email);
+                        //check null condition
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found With Email Address {email}");
+                            break;
+                        }
+                        Console.WriteLine(user);
                         break;
                     }
-
-                    Console.WriteLine(user);
-                    break;
-                }
 
                 case 6:
-                {
-                    Console.WriteLine("Enter the PhoneNumber To Delete The User");
-                    string phone = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (!PhoneNumberValidation.isValidPhoneNumber(phone))
                     {
-                        Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
-                        phone = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    User user = userService.DeleteUserByPhoneNumber(phone);
-
-                    if (user == null)
-                    {
-                        Console.WriteLine($"No User Found With Phone Number {phone}");
+                        //delete the user by entering the phone number
+                        Console.WriteLine("Enter the PhoneNumber To Delete The User");
+                        string phone = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until valid phone number entered
+                        while (!PhoneNumberValidation.isValidPhoneNumber(phone))
+                        {
+                            Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
+                            phone = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        var user = userService.DeleteUserByPhoneNumber(phone);
+                        //check null condition
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found With Phone Number {phone}");
+                            break;
+                        }
+                        Console.WriteLine(user);
                         break;
                     }
-
-                    Console.WriteLine(user);
-                    break;
-                }
 
                 case 7:
-                {
-                    Console.WriteLine("Enter Email To Send Message To The User");
-                    string email = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (!EmailValidation.isValidEmail(email))
                     {
-                        Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
-                        email = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    User user = userService.GetUserByEmail(email);
-
-                    if (user == null)
-                    {
-                        Console.WriteLine($"No User Found With Email Address {email}");
+                        //send email case with customised message to aldready registered users alone
+                        Console.WriteLine("Enter Email To Send Message To The User");
+                        string email = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until valis email is entered
+                        while (!EmailValidation.isValidEmail(email))
+                        {
+                            Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
+                            email = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        var user = userService.GetUserByEmail(email);
+                        //check null condition
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found With Email Address {email}");
+                            break;
+                        }
+                        Console.WriteLine($"Enter The Message That needed to be sent to {email}");
+                        string message = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until some message is entered not the whitespace
+                        while (message == "")
+                        {
+                            message = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        //calling the services to send notification
+                        EmailService emailService = new EmailService();
+                        emailService.Send(message, user);
                         break;
                     }
-
-                    Console.WriteLine($"Enter The Message That needed to be sent to {email}");
-                    string message = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (message == "")
-                    {
-                        message = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    EmailService emailService = new EmailService();
-                    emailService.Send(message, user);
-                    break;
-                }
 
                 case 8:
-                {
-                    Console.WriteLine("Enter PhoneNumber To Send Message To The User");
-                    string phone = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (!PhoneNumberValidation.isValidPhoneNumber(phone))
                     {
-                        Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
-                        phone = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    User user = userService.GetUserByPhoneNumber(phone);
-
-                    if (user == null)
-                    {
-                        Console.WriteLine($"No User Found With Phone Number {phone}");
+                        //send the customised message to aldready registered users alone
+                        Console.WriteLine("Enter PhoneNumber To Send Message To The User");
+                        string phone = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until valid phone number entered
+                        while (!PhoneNumberValidation.isValidPhoneNumber(phone))
+                        {
+                            Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
+                            phone = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        var user = userService.GetUserByPhoneNumber(phone);
+                        //check null condition
+                        if (user == null)
+                        {
+                            Console.WriteLine($"No User Found With Phone Number {phone}");
+                            break;
+                        }
+                        Console.WriteLine($"Enter The Message That needed to be sent to {phone}");
+                        string message = Console.ReadLine()?.Trim() ?? string.Empty;
+                        //loop until some message is entered not the whitespace
+                        while (message == "")
+                        {
+                            message = Console.ReadLine()?.Trim() ?? string.Empty;
+                        }
+                        //calling the services to send notification
+                        SMSService smsService = new SMSService();
+                        smsService.Send(message, user);
                         break;
                     }
 
-                    Console.WriteLine($"Enter The Message That needed to be sent to {phone}");
-                    string message = Console.ReadLine()?.Trim() ?? string.Empty;
-
-                    while (message == "")
-                    {
-                        message = Console.ReadLine()?.Trim() ?? string.Empty;
-                    }
-
-                    SMSService smsService = new SMSService();
-                    smsService.Send(message, user);
-                    break;
-                }
-
                 case 0:
-                {
-                    return;
-                }
+                    {
+                        return;
+                    }
             }
         }
     }

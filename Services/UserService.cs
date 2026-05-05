@@ -16,6 +16,7 @@ internal class UserService : IUserService
         Console.WriteLine("Enter Your Name");
 
         string name = Console.ReadLine() ?? "";
+        //loop until the user name is not whitespace
         while(name.Trim() == "")
         {
             Console.WriteLine("Inavlid Name.Name Should Not be Empty.Enter Valid Name");
@@ -23,8 +24,8 @@ internal class UserService : IUserService
         }
 
         Console.WriteLine("Enter Your Email");
-
         string email = Console.ReadLine() ?? "";
+        //loop until valid email is entered
         while(!EmailValidation.isValidEmail(email))
         {
             Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
@@ -34,6 +35,7 @@ internal class UserService : IUserService
         Console.WriteLine("Enter Your PhoneNumber");
 
         string phone = Console.ReadLine() ?? "";
+        //loop until the phone number is valid entered
         while (!PhoneNumberValidation.isValidPhoneNumber(phone))
         {
             Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
@@ -43,9 +45,11 @@ internal class UserService : IUserService
         user.Email = email;
         user.PhoneNumber = phone;
 
+        //user added in the static variable
         users.Add(user);
         Console.WriteLine("User Added Successfully");
 
+        //email sent to the user added
         string message = $"Successfully created an account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
         emailService.Send(message,user);
         smsService.Send(message,user);
@@ -53,6 +57,7 @@ internal class UserService : IUserService
         return user;
     }
 
+    //get the user by email if not found null will be returned
     public User? GetUserByEmail(string email)
     {
         foreach(var item in users)
@@ -65,6 +70,7 @@ internal class UserService : IUserService
         return null;
     }
 
+    //get the user by phone number if not found null will be returned
     public User? GetUserByPhoneNumber(string phonenumber)
     {
         foreach(var item in users)
@@ -77,6 +83,7 @@ internal class UserService : IUserService
         return null;
     }
 
+    //print all the registered users
     public void PrintAllUsers()
     {
         foreach(var item in users)
@@ -85,6 +92,7 @@ internal class UserService : IUserService
         }
     }
 
+    //delete the users if user not found null will be returned
     public User? DeleteUserByEmail(string email)
     {
         foreach(var item in users)
@@ -101,6 +109,7 @@ internal class UserService : IUserService
         return null;
     }
 
+    //delete the users if user not found null will be returned
     public User? DeleteUserByPhoneNumber(string phonenumber)
     {
         foreach(var item in users)
@@ -117,6 +126,7 @@ internal class UserService : IUserService
         return null;
     }
 
+    //check user if the user is registerd by comparing the object used in email and sms check
     public bool CheckUser(User user)
     {
         foreach(var item in users)
